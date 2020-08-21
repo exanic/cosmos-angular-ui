@@ -10,7 +10,6 @@ export class ButtonComponent implements OnInit {
     for (const attr of ['btn btn-primary']) {
       if (this._hasHostAttributes(attr)) {
         (this._getHostElement() as HTMLElement).classList.add(attr);
-        var i = 3;
       }
     }
   }
@@ -22,6 +21,9 @@ export class ButtonComponent implements OnInit {
   }
 
   /** Gets whether the button has one of the given attributes. */
-  _hasHostAttributes(...attributes: string[]) {    return attributes.some((attribute) =>       this._getHostElement().hasAttribute(attribute)     );
+  _hasHostAttributes(...attributes: string[]) {
+    return attributes.some((attribute) =>
+      this._getHostElement().hasAttribute(attribute)
+    );
   }
 }

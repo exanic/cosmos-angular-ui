@@ -22,10 +22,8 @@ jobs:
           npx commitlint --from $FIRST_COMMIT_SHA^
 
       - name: tslint
-        uses: mooyoul/tslint-actions@v1.1.1
-        with:
-          token: ${{ secrets.TOKEN_TAG }}
-          pattern: '*.ts'
+        run: |
+          npx tslint --project projects/cosmos-ui/tsconfig.lib.prod.json
 
       - name: test
         run: |
