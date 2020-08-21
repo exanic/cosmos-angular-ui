@@ -12,10 +12,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: prettier
-        uses: creyD/prettier_action@v2.2
-        with:
-          # This part is also where you can pass other options, for example:
-          prettier_options: --loglevel error
+        run: |
+          npx prettier -c --config=.prettierrc ./projects/cosmos-ui/src/**/*.{html,scss,ts}
 
       - name: commitlint
         run: |
@@ -24,10 +22,8 @@ jobs:
           npx commitlint --from $FIRST_COMMIT_SHA^
 
       - name: tslint
-        uses: mooyoul/tslint-actions@v1.1.1
-        with:
-          token: ${{ secrets.TOKEN_TAG }}
-          pattern: '*.ts'
+        run: |
+          npx tslint --project projects/cosmos-ui/tsconfig.lib.prod.json
 
       - name: test
         run: |
