@@ -15,7 +15,7 @@ jobs:
         uses: creyD/prettier_action@v2.2
         with:
           # This part is also where you can pass other options, for example:
-          prettier_options: --loglevel error
+          prettier_options: --loglevel=error ./projects/cosmos-ui/src
 
       - name: commitlint
         run: |
