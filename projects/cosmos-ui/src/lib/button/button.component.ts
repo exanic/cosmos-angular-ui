@@ -21,9 +21,6 @@ export class ButtonComponent implements OnInit {
   }
 
   /** Gets whether the button has one of the given attributes. */
-  _hasHostAttributes(...attributes: string[]) {
-    return attributes.some((attribute) =>
-      this._getHostElement().hasAttribute(attribute)
-    );
+  _hasHostAttributes(...attributes: string[]) {    return attributes.some((attribute) =>       this._getHostElement().hasAttribute(attribute)     );
   }
 }
