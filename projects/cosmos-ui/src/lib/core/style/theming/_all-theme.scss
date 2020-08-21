@@ -1,9 +1,7 @@
 @import './../../../button/button-bootstrap-theme';
 
 // bootstrap :-)
-@import '~bootstrap/scss/bootstrap';
-
-// cosmos bootstrap adjustments
+@import '~bootstrap/scss/bootstrap'; // cosmos bootstrap adjustments
 @mixin cosmos-theme {
   @include cosmos-bootstrap-button-theme;
 }
