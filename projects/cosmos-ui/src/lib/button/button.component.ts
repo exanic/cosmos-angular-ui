@@ -10,6 +10,7 @@ export class ButtonComponent implements OnInit {
     for (const attr of ['btn btn-primary']) {
       if (this._hasHostAttributes(attr)) {
         (this._getHostElement() as HTMLElement).classList.add(attr);
+        var i = 3;
       }
     }
   }
