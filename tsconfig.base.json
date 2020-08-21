@@ -7,7 +7,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "module": "es2020",
+    "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
@@ -25,7 +25,7 @@
       "components/*": [
         "dist/cosmos-ui/*"
       ],
-      "@exanic/cosmos": ["projects/cosmos-ui/src/public-api.ts"]
+      "@exanic/cosmos-angular": ["projects/cosmos-ui/src/public-api.ts"]
     },
   },
   "angularCompilerOptions": {
