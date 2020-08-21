@@ -1,6 +1,6 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { ButtonComponent } from '@exanic/cosmos';
+import { ButtonComponent } from '@exanic/cosmos-angular';
 
 export default {
   title: 'Example/Button',

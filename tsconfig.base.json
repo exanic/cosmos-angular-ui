@@ -25,7 +25,7 @@
       "components/*": [
         "dist/cosmos-ui/*"
       ],
-      "@exanic/cosmos": ["projects/cosmos-ui/src/public-api.ts"]
+      "@exanic/cosmos-angular": ["projects/cosmos-ui/src/public-api.ts"]
     },
   },
   "angularCompilerOptions": {
