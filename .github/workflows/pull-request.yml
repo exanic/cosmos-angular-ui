@@ -1,0 +1,34 @@
+name: Incoming PullRequest
+on: [pull_request]
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: prettier
+        uses: creyD/prettier_action@v2.2
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --loglevel error
+
+      - name: commitlint
+        run: |
+          FIRST_COMMIT_SHA=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" ${{ github.event.pull_request.commits_url }} | jq -r '.[0].sha')
+          npm ci
+          npx commitlint --from $FIRST_COMMIT_SHA^
+
+      - name: tslint
+        uses: mooyoul/tslint-actions@v1.1.1
+        with:
+          token: ${{ secrets.TOKEN_TAG }}
+          pattern: '*.ts'
+
+      - name: test
+        run: |
+          npx ng test --watch=false --browsers=ChromeHeadlessCustom

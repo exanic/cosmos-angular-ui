@@ -1,0 +1,12 @@
+{
+  "name": "@daniel.moos/npm-test",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "bootstrap": "^5.0.0-alpha1"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

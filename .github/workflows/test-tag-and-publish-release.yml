@@ -1,0 +1,73 @@
+name: Test, Tag & Publish Release
+on:
+  push:
+    branches:
+      - master
+jobs:
+  test-and-tag-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: NPM Token
+        run: |
+          echo ${{ secrets.NPM_TOKEN }}
+          echo ${{ env.NPM_TOKEN }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: test
+        run: |
+          npm ci
+          npx ng test --watch=false --browsers=ChromeHeadlessCustom
+
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+        with:
+          path: ./projects/cosmos-ui
+
+      - name: tag release
+        uses: hole19/git-tag-action@master
+        env:
+          TAG: ${{ steps.package-version.outputs.current-version }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_TAG }}
+
+      - name: Upload Release as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: release
+          path: |
+            .
+            !./node_modules/
+
+  publish-release:
+    needs: test-and-tag-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Cosmos-UI Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: release
+
+      - name: Install node_modules
+        run: npm ci
+
+      - name: Build Library
+        run: npm run build
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@daniel.moos'
+
+      - name: Publish Library
+        run: |
+          cd dist/cosmos-ui
+          npm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

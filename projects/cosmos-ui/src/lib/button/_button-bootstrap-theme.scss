@@ -1,0 +1,55 @@
+@import '~bootstrap/scss/mixins/buttons';
+@mixin cosmos-bootstrap-button-theme {
+  .btn-primary {
+    @include button-variant(
+      $primary,
+      $primary,
+      $white,
+      $primary-hover,
+      $primary-hover,
+      $white,
+      $primary-active,
+      $primary-active,
+      $white
+    );
+  }
+  .btn-secondary {
+    @include button-variant(
+      $white,
+      $primary,
+      $primary,
+      $white,
+      $primary-hover,
+      $primary-hover,
+      $white,
+      $primary-active,
+      $primary-active
+    );
+  }
+  .btn-success {
+    @include button-variant(
+      $success,
+      $success,
+      $white,
+      $success-hover,
+      $success-hover,
+      $white,
+      $success-active,
+      $success-active,
+      $white
+    );
+  }
+  .btn-danger {
+    @include button-variant(
+      $danger,
+      $danger,
+      $white,
+      $danger-hover,
+      $danger-hover,
+      $white,
+      $danger-active,
+      $danger-active,
+      $white
+    );
+  }
+}
